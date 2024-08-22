@@ -8,6 +8,7 @@ import StartScreen from "./StartScreen";
 import NextButton from "./NextButton";
 import Progress from "./Progress";
 import FinishScreen from "./FinishScreen";
+import UploadQuiz from "./UploadQuiz";
 
 const initialState = {
   questions: [],
@@ -25,6 +26,11 @@ function reducer(state, action) {
         ...state,
         questions: action.payload,
         status: "ready",
+      };
+    case "upload":
+      return {
+        ...state,
+        status: "upload",
       };
     case "dataFailed":
       return { ...state, status: "error" };
@@ -89,6 +95,7 @@ function App() {
         {status === "ready" && (
           <StartScreen numQuestions={numQuestions} dispatch={dispatch} />
         )}
+        {status === "upload" && <UploadQuiz />}
         {status === "active" && (
           <>
             <Progress
