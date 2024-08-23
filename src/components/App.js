@@ -11,7 +11,9 @@ import FinishScreen from "./FinishScreen";
 import UploadQuiz from "./UploadQuiz";
 import Footer from "./Footer";
 import Timer from "./Timer";
+import Exit from "./Exit";
 
+//створити функцію яка буде брати купу параметрів? і повертати форматований обʼєкт питань.
 const SEC_PER_QUESTION = 30;
 
 const initialState = {
@@ -80,6 +82,9 @@ function reducer(state, action) {
           state.points > state.highscore ? state.points : state.highscore,
       };
 
+    case "exit":
+      return { ...state, status: "ready", index: 0, answer: null, points: 0 };
+
     default:
       throw new Error("action error");
   }
@@ -113,7 +118,8 @@ function App() {
         {status === "ready" && (
           <StartScreen numQuestions={numQuestions} dispatch={dispatch} />
         )}
-        {status === "upload" && <UploadQuiz dispatch={dispatch}/>}
+
+        {status === "upload" && <UploadQuiz dispatch={dispatch} />}
         {status === "active" && (
           <>
             <Progress
@@ -137,6 +143,7 @@ function App() {
                 dispatch={dispatch}
                 answer={answer}
               />
+              <Exit dispatch={dispatch} />
             </Footer>
           </>
         )}
