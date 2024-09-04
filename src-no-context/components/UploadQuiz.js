@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import { useQuiz } from "./QuizContext";
 
-const UploadQuiz = () => {
-  const { dispatch } = useQuiz();
+const UploadQuiz = ({ dispatch }) => {
   const [fileName, setFileName] = useState("");
 
   const handleUpload = (event) => {

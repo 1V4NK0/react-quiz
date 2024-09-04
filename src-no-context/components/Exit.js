@@ -1,8 +1,6 @@
 import React from "react";
-import { useQuiz } from "./QuizContext";
 
-const Exit = () => {
-  const { dispatch } = useQuiz();
+const Exit = ({ dispatch }) => {
   return (
     <button onClick={() => dispatch({ type: "exit" })} className="btn btn-ui">
       Exit
